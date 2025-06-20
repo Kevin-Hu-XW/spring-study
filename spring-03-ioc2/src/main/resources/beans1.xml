@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+    <!--    通过下标赋值-->
+<!--    <bean  id="user" class="com.kevin.pojo.User">-->
+<!--        <constructor-arg  index="0" value="Kevin"/>-->
+<!--    </bean>-->
+    <!--    通过类型赋值-->
+<!--    <bean  id="user" class="com.kevin.pojo.User">-->
+<!--        <constructor-arg type="java.lang.String" value="Kevin"/>-->
+<!--    </bean>-->
+
+
+    <!--    通过参数名来赋值-->
+    <!--
+       id：bean的唯一标识符，对象的变量名
+       class：bean对象所对应的全限定名，包名+类名
+       name：bean对象的别名
+    -->
+    <bean  id="user" class="com.kevin.pojo.User" name="user2">
+        <constructor-arg  name="name" value="Kevin1"/>
+    </bean>
+   <!-- 别名-->
+    <alias name="user" alias="userNew"/>
+
+</beans>

@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+
+      <groupId>com.java</groupId>
+      <artifactId>spring-study</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <packaging>pom</packaging>
+
+      <name>spring-study</name>
+      <url>http://maven.apache.org</url>
+  <modules>
+    <module>spring-01-ioc1</module>
+    <module>spring-02-hellospring</module>
+      <module>spring-03-ioc2</module>
+      <module>spring-04-di</module>
+      <module>spring-05-Autowired</module>
+      <module>spring-06-anno</module>
+      <module>spring-07-appconfig</module>
+      <module>spring-08-proxy</module>
+      <module>spring-09-aop</module>
+  </modules>
+
+
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>1.8</java.version>
+      <spring.boot.version>2.7.18</spring.boot.version>
+  </properties>
+
+
+        <dependencyManagement>
+            <dependencies>
+                <!--
+                    管理版本:
+                    spring-boot-dependencies 定义了 Spring Boot 生态系统中常用库的推荐版本，避免版本冲突。
+                    它包含 Spring 官方模块（如 Spring Core、Spring MVC、Spring Data 等）
+                    以及许多第三方库（如 Jackson、Hibernate、Logback 等）的版本。
+                    当你在 pom.xml 中通过 <dependencyManagement> 导入 spring-boot-dependencies（如问题中所示的版本 2.5.3），
+                    项目中声明的依赖如果在 BOM 中有定义，则无需显式指定版本号，Maven 会自动使用 BOM 中定义的版本。
+                 -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-dependencies</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <type>pom</type>
+                    <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement>
+
+
+        <dependencies>
+              <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.5</version>
+                <scope>test</scope>
+              </dependency>
+
+              <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+              </dependency>
+              <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+              </dependency>
+
+              <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+              </dependency>
+              <dependency>
+                  <groupId>org.projectlombok</groupId>
+                  <artifactId>lombok</artifactId>
+              </dependency>
+      </dependencies>
+
+       <build>
+            <pluginManagement>
+                <plugins>
+                    <!-- 统一构建插件配置 -->
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </pluginManagement>
+       </build>
+
+
+</project>

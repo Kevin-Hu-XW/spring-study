@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--注册bean-->
+    <bean id="userService" class="com.kevin.service.UserServiceImpl"/>
+    <bean id="logging" class="com.kevin.log.Logging"/>
+    <bean id="afterLog" class="com.kevin.log.AfterLog"/>
+    <!--  方式1 配置AOP  -->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;-->
+<!--        切入点：expression表达式 "execution(要执行的位置！ * * * * *)  execution(访问修饰符 返回类型 包名.类名.方法名(参数))-->
+<!--        Spring AOP 默认 只拦截 public 方法，即使你没写 public 修饰符，它也只匹配 public 方法。-->
+<!--        execution(* com.kevin.service.UserServiceImpl1.*(..))        // 没写修饰符-->
+<!--        execution(public * com.kevin.service.UserServiceImpl1.*(..)) // 显式写了 public-->
+
+<!--        &ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.kevin.service.UserServiceImpl1.*(..))"/>-->
+<!--        &lt;!&ndash;  执行环绕增加; aop:advisor 基于实现接口（如 MethodBeforeAdvice &ndash;&gt;-->
+<!--        <aop:advisor advice-ref="logging" pointcut-ref="pointcut"/>-->
+<!--        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>-->
+<!--    </aop:config>-->
+
+    <!--  方式 2 自定义  -->
+<!--    <bean id="diy" class="com.kevin.diy.DiyPointCut"/>-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;   aop:aspect 基于 POJO 普通类 + 方法名     &ndash;&gt;-->
+<!--        <aop:aspect ref="diy">-->
+<!--            <aop:pointcut id="pointcut" expression="execution(* com.kevin.service.UserServiceImpl.*(..))"/>-->
+<!--            <aop:before method="before" pointcut-ref="pointcut"/>-->
+<!--            <aop:after method="after" pointcut-ref="pointcut"/>-->
+<!--&lt;!&ndash;            <aop:around method="around" pointcut-ref="pointcut"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <aop:after-returning method="afterReturning" pointcut-ref="pointcut"/>&ndash;&gt;-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+
+    <!--  方式3   -->
+    <bean id="annotation" class="com.kevin.diy.Annotation"/>
+    <!--   开启注解支持  -->
+    <aop:aspectj-autoproxy/>
+
+
+</beans>
